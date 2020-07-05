@@ -23,7 +23,7 @@ public class Map {
 
         int count = 0;
         for (HashMap.Entry<String, String> hashMap : map.entrySet()) {
-            if(hashMap.getKey() == lastName && hashMap.getValue() == firstName) count++;
+            if(hashMap.getKey().trim().equalsIgnoreCase(lastName)  && hashMap.getValue().trim().equalsIgnoreCase(firstName)) count++;
         }
         return count;
         // Передать фамилию и имя человека в метод
@@ -39,10 +39,12 @@ public class Map {
      * @return - HashMap уже с удаленным элементом
      */
     public static HashMap<String, String> deleteValueFromMap(HashMap<String, String> map, String value) {
-        for (HashMap.Entry<String, String> ent : map.entrySet()) {
-            if (ent.getValue().equals(value)) {
+        HashMap<String, String> temp = (HashMap<String, String>) map.clone();
+        for (HashMap.Entry<String, String> ent : temp.entrySet()) {
+            if (ent.getValue().trim().equalsIgnoreCase(value)) {
                 map.remove(ent.getKey());
             }
+
         }
         return map;
         // Необходимо наполнить HashMap<String, String> и удалить значение оттуда.
